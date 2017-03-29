@@ -21,12 +21,12 @@ CONSUL_OPTS="$CONSUL_OPTS -bootstrap-expect=$PEERS"
 CONSUL_DC=${CONSUL_DC:-$CS_CLUSTER_ID}
 CONSUL_OPTS="$CONSUL_OPTS -dc=$CONSUL_DC"
 
-HTTP_PORT="${HTTP_PORT:-8300}"
+HTTP_PORT="${HTTP_PORT:-8314}"
 CONSUL_OPTS="$CONSUL_OPTS -http-port=$HTTP_PORT"
 
 if [ $CONSUL_UI == "true" ]
 then
-  CONSUL_OPTS="$CONSUL_OPTS -ui"
+  CONSUL_OPTS="$CONSUL_OPTS -client=$LOCAL_IP -ui"
 fi
 
 /usr/local/bin/docker-entrypoint.sh agent -server $CONSUL_OPTS
