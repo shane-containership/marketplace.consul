@@ -1,5 +1,14 @@
 #!/bin/sh
 
+# Update directory permissions, if owned by root (bind-mounting breaks without this)
+# https://github.com/hashicorp/docker-consul/pull/22 , https://github.com/hashicorp/docker-consul/issues/20
+if [ "$(stat -c %u /consul/data)" = '0' ]; then
+  chown consul:consul /consul/data
+fi
+if [ "$(stat -c %u /consul/config)" = '0' ]; then
+  chown consul:consul /consul/config
+fi
+
 LOCAL_DNS="$(hostname).$CS_CLUSTER_ID.containership"
 FOLLOWERS_DNS="followers.$CS_CLUSTER_ID.containership"
 
