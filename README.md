@@ -10,7 +10,7 @@ The Containership marketplace is a series of containerized applications configur
 > **Note:** If you attempt to run this image outside of a containership cluster, we cannot guarantee that it will run properly.
 
 ### Author
-ContainerShip Developers - developers@containership.io
+ContainerShip Developers - developers@containership.io.
 
 ### Configuration
 This image will run as-is, with no additional environment variables set. For clustering to work properly, start the application in host networking mode. There are various optionally configurable environment variables:
